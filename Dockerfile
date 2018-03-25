@@ -2,10 +2,14 @@ FROM node:9.9.0
 
 WORKDIR /usr/src/app
 
+RUN npm install nodemon -g
+
 COPY . /usr/src/app
 
 RUN npm install
 
-EXPOSE 3000
+ENV NODE_ENV production
 
-CMD ["node", "app.js"]
+CMD ["nodemon", "app.js"]
+
+EXPOSE 80
