@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/trflagg/Hyrcania/issues"
   },
-  "homepage": "https://github.com/trflagg/Hyrcania#readme"
+  "homepage": "https://github.com/trflagg/Hyrcania#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
