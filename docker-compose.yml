@@ -9,3 +9,13 @@ hyrcania:
     DB_ENV: compose
   command: nodemon -L app.js
 
+webpack:
+  image: 'node:9.9.0'
+  ports: 
+    - '8080:8080'
+  volumes:
+    - '.:/usr/src/app'
+  environment:
+    PORT: 8080
+  working_dir: /usr/src/app/client
+  command: npm start 
