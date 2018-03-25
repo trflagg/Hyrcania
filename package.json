@@ -1,0 +1,19 @@
+{
+  "name": "hyrcania",
+  "version": "1.0.0",
+  "description": "An online editor using React, Express, and MongoDB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trflagg/Hyrcania.git"
+  },
+  "author": "Taylor Flagg",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/trflagg/Hyrcania/issues"
+  },
+  "homepage": "https://github.com/trflagg/Hyrcania#readme"
+}
