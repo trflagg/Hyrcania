@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const ObjectId = require('mongodb').ObjectId;
 
 const Db = require('argieDB/db');
 
@@ -41,10 +42,8 @@ app.use('/static', express.static('client/build/static'));
 
 app.get('/new', (req, res) => {
   let newMessage = db.create('Message');
-
   newMessage.setName('TEST1');
   newMessage.setText('Hello world');
-
   db.save('Message', newMessage).then(() => {
     res.send('New Message created');
   });
@@ -55,6 +54,14 @@ app.get('/messages', (req, res) => {
     res.send(results);
   }).catch(e => { res.send(e); });
 });
+
+app.get('/message/:message_id', (req, res) => {
+  const message_id = req.params.message_id;
+  db.load('Message', {_id: new ObjectId(message_id)}).then(message => {
+    res.send(message);
+  }).catch(e => { res.send(e); });
+});
+
 
 
 // open port and start listening

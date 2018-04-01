@@ -24,8 +24,8 @@ class MessageList extends Component {
         </thead>
         <tbody>
         {this.state.messages && this.state.messages.map(message => (
-          <tr key={message._id}>
-            <td>{message._name}</td>
+          <tr onClick={() => this.props.onMessagePress(message._id)} key={message._id}>
+            <td >{message._name}</td>
           </tr>
         ))}
         </tbody>
