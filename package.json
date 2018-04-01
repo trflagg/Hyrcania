@@ -18,6 +18,7 @@
   "homepage": "https://github.com/trflagg/Hyrcania#readme",
   "dependencies": {
     "argie": "https://github.com/trflagg/argie",
+    "argieDB": "https://github.com/trflagg/argieDB",
     "express": "^4.16.3"
   }
 }
