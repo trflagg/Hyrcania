@@ -19,3 +19,6 @@ webpack:
     PORT: 8080
   working_dir: /usr/src/app/client
   command: npm start 
+
+mongo:
+  image: "mongo:3.4.7"
