@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
 const Db = require('argieDB/db');
@@ -20,8 +21,21 @@ console.log('Connected.');
 // load models
 const Message = require('argie/models/message')(db);
 
+
+// set up view engine
+app.set('views', path.join(__dirname, 'views'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+
 // routes
-app.get('/', (req, res) => res.send('Hyrcania!'));
+app.get('/', (req, res) => {
+  let scriptPath = 'static/js/bundle.js';
+  if (process.env.NODE_ENV !== "production") {
+    scriptPath = 'http://192.168.99.100:8080/static/js/bundle.js';
+  }
+  res.render('index', {scriptPath});
+});
 
 app.use('/static', express.static('client/build/static'));
 
@@ -42,6 +56,8 @@ app.get('/messages', (req, res) => {
   }).catch(e => { res.send(e); });
 });
 
+
+// open port and start listening
 let port = 3000;
 if (process.env.NODE_ENV === 'production') {
   port = 80;
