@@ -16,11 +16,20 @@ class App extends Component {
   handleMessagePress = (message_id) => {
     fetch(`/message/${message_id}`).then(response => {
       response.json().then(message => {
-        console.log(message);
         this.setState({
           selectedMessage: message,
         });
       });
+    });
+  }
+
+  handleSaveMessage = (newMessage) => {
+    fetch(`/message/${newMessage._id}`, {
+      method: 'POST',
+      body: JSON.stringify(newMessage),
+      headers: new Headers([
+        ['Content-Type', 'application/json']
+      ]),
     });
   }
 
@@ -35,6 +44,7 @@ class App extends Component {
           />
           <MessageDetail
             message={this.state.selectedMessage}
+            onSaveMessage={this.handleSaveMessage}
           />
         </div>
       </div>
