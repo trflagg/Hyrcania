@@ -10,7 +10,20 @@ class App extends Component {
     super(...arguments);
     this.state = {
       selectedMessage: null,
+      messages: [],
     };
+  }
+
+  componentDidMount() {
+    this.fetchAllMessages();
+  }
+
+  fetchAllMessages() {
+    fetch('/messages').then(response => {
+      response.json().then(messages => {
+        this.setState({ messages });
+      });
+    });
   }
 
   handleMessagePress = (message_id) => {
@@ -30,6 +43,8 @@ class App extends Component {
       headers: new Headers([
         ['Content-Type', 'application/json']
       ]),
+    }).then(res => {
+      this.fetchAllMessages();
     });
   }
 
@@ -40,6 +55,7 @@ class App extends Component {
         <div className="master-detail-container">
           <MessageList
             onMessagePress={this.handleMessagePress}
+            messages={this.state.messages}
             test={'hello'}
           />
           <MessageDetail
