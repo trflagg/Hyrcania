@@ -1,10 +1,10 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
 const ObjectId = require('mongodb').ObjectId;
 
 const Db = require('argieDB/db');
-
 
 // Connect to DB
 console.log('Connecting to DB');
@@ -28,6 +28,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
+// body parser
+app.use(bodyParser.json());
 
 // routes
 app.get('/', (req, res) => {
@@ -62,7 +64,24 @@ app.get('/message/:message_id', (req, res) => {
   }).catch(e => { res.send(e); });
 });
 
+app.post('/message/:message_id', (req, res) => {
+  const message_id = req.params.message_id;
+  const messageReceived = req.body;
 
+  db.load('Message', {_id: new ObjectId(message_id)})
+    .then(message => {
+      message.setName(messageReceived._name);
+      message.setText(messageReceived._text);
+      return db.save('Message', message);
+    })
+    .then(() => {
+      res.send(200);
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(500).send(e);
+    });
+});
 
 // open port and start listening
 let port = 3000;
