@@ -1,6 +1,8 @@
 .header {
   font-size: 2em;
-  padding: 20px;
+  margin: 20px;
+  text-align: left;
+  border-bottom: 5px solid #CCC;
 }
 
 .header p {

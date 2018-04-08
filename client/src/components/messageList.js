@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './messageList.css';
+
 class MessageList extends Component {
   constructor() {
     super(...arguments);
@@ -18,10 +20,7 @@ class MessageList extends Component {
 
   render() {
     return (
-      <table>
-        <thead>
-          <tr><td>Name</td></tr>
-        </thead>
+      <table className="message-list">
         <tbody>
         {this.state.messages && this.state.messages.map(message => (
           <tr onClick={() => this.props.onMessagePress(message._id)} key={message._id}>

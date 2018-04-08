@@ -28,13 +28,15 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <MessageList
-          onMessagePress={this.handleMessagePress}
-          test={'hello'}
-        />
-        <MessageDetail
-          message={this.state.selectedMessage}
-        />
+        <div className="master-detail-container">
+          <MessageList
+            onMessagePress={this.handleMessagePress}
+            test={'hello'}
+          />
+          <MessageDetail
+            message={this.state.selectedMessage}
+          />
+        </div>
       </div>
     );
   }

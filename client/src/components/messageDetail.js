@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './messageDetail.css';
+
 class MessageDetail extends Component {
   constructor() {
     super(...arguments);
@@ -14,7 +16,7 @@ class MessageDetail extends Component {
     }
 
     return (
-      <div>
+      <div className="message-detail">
         <p>ID = {message._id}</p>
         <p>Name = {message._name}</p>
         <p>Text = {message._text}</p>
