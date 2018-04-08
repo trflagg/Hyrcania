@@ -15,6 +15,10 @@ class EditableField extends Component {
     });
   }
 
+  submitChange = () => {
+    this.setState({ editing: false });
+    this.props.onFieldUpdate(this.props.fieldName, this.state.text);
+  }
 
   handleTextClick = () => {
     this.setState({ editing: true });
@@ -25,8 +29,13 @@ class EditableField extends Component {
   }
 
   handleBlur = () => {
-    this.setState({ editing: false });
-    this.props.onFieldUpdate(this.props.fieldName, this.state.text);
+    this.submitChange();
+  }
+
+  handleKeyPress = e => {
+    if (e.charCode === 13) {
+      this.submitChange();
+    }
   }
 
   render() {
@@ -40,6 +49,7 @@ class EditableField extends Component {
                 value={text}
                 onChange={this.handleTextChange}
                 onBlur={this.handleBlur}
+                onKeyPress={this.handleKeyPress}
               />
             </div>
         }
